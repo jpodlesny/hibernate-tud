@@ -28,20 +28,19 @@ public class SzpitalManagerHibernateImpl implements SzpitalManager {
 	
 	
 	@Override
-	public void addBadanie(Badanie badanie) {
+	public void addBadanie(Badanie badanie){
 		badanie.setId(0);
 		sessionFactory.getCurrentSession().persist(badanie);
-		
 	}
 	
 	@Override
-	public void deleteBadanie(Badanie badanie) {
+	public void deleteBadanie(Badanie badanie){
 		badanie = (Badanie) sessionFactory.getCurrentSession().get(Badanie.class,badanie.getId());		
 		sessionFactory.getCurrentSession().delete(badanie);
 	}
 	
 	@Override
-	public void editBadanie(Badanie badanie1, Badanie badanie2) {
+	public void editBadanie(Badanie badanie1, Badanie badanie2){
 		badanie1.setNazwa(badanie2.getNazwa());
 		badanie1.setOpis(badanie2.getOpis());
 		badanie1.setKoszt(badanie2.getKoszt());
@@ -52,15 +51,15 @@ public class SzpitalManagerHibernateImpl implements SzpitalManager {
 	
 	
 	
+	@Override
+	public Badanie getOneBadanie(long id) {
+		return (Badanie) sessionFactory.getCurrentSession().getNamedQuery("Badanie.getOneBadanie").setLong("id", id).uniqueResult();	
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Badanie> getAllBadania() {
 		return sessionFactory.getCurrentSession().getNamedQuery("Badanie.getAllBadania").list();
-	}
-	
-	@Override
-	public Badanie getOneBadanie(long id) {
-		return (Badanie) sessionFactory.getCurrentSession().getNamedQuery("Badanie.getOneBadanie").setLong("id", id).uniqueResult();	
 	}
 
 	@SuppressWarnings("unchecked")
@@ -68,5 +67,34 @@ public class SzpitalManagerHibernateImpl implements SzpitalManager {
 	public List<Badanie> kosztBadanie(String koszt) {
 		return sessionFactory.getCurrentSession().getNamedQuery("Badanie.kosztBadanie").setString("koszt", koszt).list();
 	}
+	
+	@Override
+	public List<Gabinet> getAllGabinetyFromBadanie(Badanie badanie) {
+		return badanie.getGabinety();
+	}
+	
+	
+	
+	
+	@Override
+	public void addGabinet(Gabinet gabinet) {
+		gabinet.setId(0);
+		sessionFactory.getCurrentSession().persist(gabinet);
+	}
+	
+	@Override
+	public Gabinet getOneGabinet(long id) {
+		return (Gabinet) sessionFactory.getCurrentSession().getNamedQuery("Gabinet.getOneGabinet").setLong("id", id).uniqueResult();
+	}	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Gabinet> getAllGabinety() {
+		return sessionFactory.getCurrentSession().getNamedQuery("Gabinet.getAllGabinety").list();
+	}
+	
+	
+	
+	
 	
 }
