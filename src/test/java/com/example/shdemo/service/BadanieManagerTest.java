@@ -13,7 +13,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.shdemo.domain.Badanie;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
 @TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)
@@ -37,7 +36,7 @@ public class BadanieManagerTest {
 	
 	private final static String BAD_NAZWA_4 = "Bilirubina calkowita";
 	private final static String BAD_OPIS_4 = "Sprawdzenie stezenia bilirubiny we krwi";
-	private final static String BAD_KOSZT_4 = "100";
+	private final static String BAD_KOSZT_4 = "50";
 	
 	@Test
 	public void addBadanie(){
@@ -104,7 +103,36 @@ public class BadanieManagerTest {
 
 	}
 	
-	
+	@Test
+	public void badaniePoKosztach() {
+
+		Badanie badanie1 = new Badanie(BAD_NAZWA_1,BAD_OPIS_1,BAD_KOSZT_1);
+		Badanie badanie2 = new Badanie(BAD_NAZWA_2,BAD_OPIS_2,BAD_KOSZT_2);
+		Badanie badanie3 = new Badanie(BAD_NAZWA_3,BAD_OPIS_3,BAD_KOSZT_3);
+		Badanie badanie4 = new Badanie(BAD_NAZWA_4,BAD_OPIS_4,BAD_KOSZT_4);
+		
+		szpitalManager.addBadanie(badanie1);
+		szpitalManager.addBadanie(badanie2);
+		szpitalManager.addBadanie(badanie3);
+		szpitalManager.addBadanie(badanie4);
+		
+		List<Badanie> badania = szpitalManager.kosztBadanie(BAD_KOSZT_4);
+		long idBadania;
+		Badanie badanieRetrieved;
+		
+		idBadania = badania.get(0).getId(); 
+		badanieRetrieved = szpitalManager.getOneBadanie(idBadania);
+		assertEquals(BAD_NAZWA_1, badanieRetrieved.getNazwa());
+		assertEquals(BAD_OPIS_1, badanieRetrieved.getOpis());
+		assertEquals(BAD_KOSZT_1, badanieRetrieved.getKoszt());
+
+		idBadania = badania.get(1).getId();
+		badanieRetrieved = szpitalManager.getOneBadanie(idBadania);
+		assertEquals(BAD_NAZWA_4, badanieRetrieved.getNazwa());
+		assertEquals(BAD_OPIS_4, badanieRetrieved.getOpis());
+		assertEquals(BAD_KOSZT_4, badanieRetrieved.getKoszt());
+
+	}
 	
 	
 	

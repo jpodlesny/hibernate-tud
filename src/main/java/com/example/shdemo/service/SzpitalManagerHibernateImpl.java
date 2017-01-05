@@ -63,6 +63,10 @@ public class SzpitalManagerHibernateImpl implements SzpitalManager {
 		return (Badanie) sessionFactory.getCurrentSession().getNamedQuery("Badanie.getOneBadanie").setLong("id", id).uniqueResult();	
 	}
 
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Badanie> kosztBadanie(String koszt) {
+		return sessionFactory.getCurrentSession().getNamedQuery("Badanie.kosztBadanie").setString("koszt", koszt).list();
+	}
 	
 }

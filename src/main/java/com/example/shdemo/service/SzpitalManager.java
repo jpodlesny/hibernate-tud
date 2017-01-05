@@ -12,5 +12,6 @@ public interface SzpitalManager {
 	
 	Badanie getOneBadanie(long id);
 	List<Badanie> getAllBadania();
+	List<Badanie> kosztBadanie(String koszt);
 
 }

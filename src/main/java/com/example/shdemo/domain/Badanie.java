@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 @NamedQueries({ 
 	@NamedQuery(name = "Badanie.getOneBadanie", query = "Select b from Badanie b where b.id = :id"),
 	@NamedQuery(name = "Badanie.getAllBadania", query = "Select b from Badanie b"),
-	@NamedQuery(name = "Badanie.KosztBadania", query = "Select b from Badanie b where b.koszt = :koszt")
+	@NamedQuery(name = "Badanie.kosztBadanie", query = "Select b from Badanie b where b.koszt = :koszt")
 })
 public class Badanie {
 	
