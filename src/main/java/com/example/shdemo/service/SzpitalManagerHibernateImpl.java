@@ -25,11 +25,21 @@ public class SzpitalManagerHibernateImpl implements SzpitalManager {
 	}
 	
 	
+	
+	
 	@Override
 	public void addBadanie(Badanie badanie) {
 		badanie.setId(0);
 		sessionFactory.getCurrentSession().persist(badanie);
 		
+	}
+	
+
+	
+	@Override
+	public void deleteBadanie(Badanie badanie) {
+		badanie = (Badanie) sessionFactory.getCurrentSession().get(Badanie.class,badanie.getId());		
+		sessionFactory.getCurrentSession().delete(badanie);
 	}
 	
 	
@@ -43,6 +53,7 @@ public class SzpitalManagerHibernateImpl implements SzpitalManager {
 	public Badanie getOneBadanie(long id) {
 		return (Badanie) sessionFactory.getCurrentSession().getNamedQuery("Badanie.getOneBadanie").setLong("id", id).uniqueResult();	
 	}
+
 	
 	
 }

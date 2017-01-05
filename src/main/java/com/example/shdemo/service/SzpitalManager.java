@@ -7,6 +7,8 @@ import com.example.shdemo.domain.*;
 public interface SzpitalManager {
 	
 	void addBadanie(Badanie badanie);
+	void deleteBadanie(Badanie badanie);
+	
 	Badanie getOneBadanie(long id);
 	List<Badanie> getAllBadania();
 
