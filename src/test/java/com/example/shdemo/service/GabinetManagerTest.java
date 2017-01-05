@@ -75,5 +75,64 @@ public class GabinetManagerTest {
 	}
 	
 	
+	@Test
+	public void deleteGabinet() {
+
+		Gabinet gabinet1 = new Gabinet(GAB_NUMER_1,GAB_PIETRO_1,GAB_LEKARZ_1);
+		Gabinet gabinet2 = new Gabinet(GAB_NUMER_2,GAB_PIETRO_2,GAB_LEKARZ_2);
+
+		szpitalManager.addGabinet(gabinet1);
+		szpitalManager.addGabinet(gabinet2); 
+		
+		Gabinet del = szpitalManager.getAllGabinety().get(0);
+		
+		szpitalManager.deleteGabinet(del);
+		
+		List<Gabinet> kredki = szpitalManager.getAllGabinety();
+		Gabinet gabinetRetrieved;
+		
+		gabinetRetrieved = szpitalManager.getOneGabinet(kredki.get(0).getId());		
+		assertEquals(GAB_NUMER_2, gabinetRetrieved.getNumer());
+		assertEquals(GAB_PIETRO_2, gabinetRetrieved.getPietro());
+		assertEquals(GAB_LEKARZ_2, gabinetRetrieved.getLekarz());
+				
+		
+	}
+	
+	
+	@Test
+	public void editGabinet() {
+
+		Gabinet gabinet1 = new Gabinet(GAB_NUMER_1,GAB_PIETRO_1,GAB_LEKARZ_1);
+		Gabinet gabinet2 = new Gabinet(GAB_NUMER_2,GAB_PIETRO_2,GAB_LEKARZ_2);
+
+		szpitalManager.addGabinet(gabinet1);
+		szpitalManager.addGabinet(gabinet2); 
+		
+		Gabinet gab1 = szpitalManager.getOneGabinet(szpitalManager.getAllGabinety().get(0).getId());
+		Gabinet gab2 = gab1;
+		
+		gab2.setNumer(GAB_NUMER_3);
+		gab2.setPietro(GAB_PIETRO_3);
+		gab2.setLekarz(GAB_LEKARZ_3);
+		szpitalManager.editGabinet( gab1, gab2);
+		
+		List<Gabinet> gabinety = szpitalManager.getAllGabinety();
+		Gabinet gabinetRetrieved;
+		
+		gabinetRetrieved = szpitalManager.getOneGabinet(gabinety.get(0).getId());		
+		assertEquals(GAB_NUMER_3, gabinetRetrieved.getNumer());
+		assertEquals(GAB_PIETRO_3, gabinetRetrieved.getPietro());
+		assertEquals(GAB_LEKARZ_3, gabinetRetrieved.getLekarz());
+		
+		gabinetRetrieved = szpitalManager.getOneGabinet(gabinety.get(1).getId());		
+		assertEquals(GAB_NUMER_2, gabinetRetrieved.getNumer());
+		assertEquals(GAB_PIETRO_2, gabinetRetrieved.getPietro());
+		assertEquals(GAB_LEKARZ_2, gabinetRetrieved.getLekarz());
+
+
+		
+	}
+	
 	
 }

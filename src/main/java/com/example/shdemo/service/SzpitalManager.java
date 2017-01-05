@@ -17,6 +17,8 @@ public interface SzpitalManager{
 
 	
 	void addGabinet(Gabinet gabinet);
+	void deleteGabinet(Gabinet gabinet);
+	void editGabinet(Gabinet gabinet1, Gabinet gabinet2);
 	Gabinet getOneGabinet(long id);
 	List<Gabinet> getAllGabinety();
 	
