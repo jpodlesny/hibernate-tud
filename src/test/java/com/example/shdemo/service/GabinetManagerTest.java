@@ -46,7 +46,7 @@ public class GabinetManagerTest {
 	
 	private final static String GAB_NUMER_4 = "35";
 	private final static String GAB_PIETRO_4 = "dwunaste";
-	private final static String GAB_LEKARZ_4 = "Jasny";
+	private final static String GAB_LEKARZ_4 = "Kowalski";
 	
 	
 	
@@ -134,5 +134,36 @@ public class GabinetManagerTest {
 		
 	}
 	
+	
+	@Test
+	public void gabinetyPoLekarzach() {
+
+		Gabinet gabinet1 = new Gabinet(GAB_NUMER_1,GAB_PIETRO_1,GAB_LEKARZ_1);
+		Gabinet gabinet2 = new Gabinet(GAB_NUMER_2,GAB_PIETRO_2,GAB_LEKARZ_2);
+		Gabinet gabinet3 = new Gabinet(GAB_NUMER_3,GAB_PIETRO_3,GAB_LEKARZ_3);
+		Gabinet gabinet4 = new Gabinet(GAB_NUMER_4,GAB_PIETRO_4,GAB_LEKARZ_4);
+
+		szpitalManager.addGabinet(gabinet1);
+		szpitalManager.addGabinet(gabinet2);
+		szpitalManager.addGabinet(gabinet3);
+		szpitalManager.addGabinet(gabinet4);
+		
+		List<Gabinet> gabinety = szpitalManager.lekarzGabinet(GAB_LEKARZ_4);
+		long idGabinetu;
+		Gabinet gabinetRetrieved;
+		
+		idGabinetu = gabinety.get(0).getId(); 
+		gabinetRetrieved = szpitalManager.getOneGabinet(idGabinetu);
+		assertEquals(GAB_NUMER_1, gabinetRetrieved.getNumer());
+		assertEquals(GAB_PIETRO_1, gabinetRetrieved.getPietro());
+		assertEquals(GAB_LEKARZ_1, gabinetRetrieved.getLekarz());
+
+		idGabinetu = gabinety.get(1).getId();
+		gabinetRetrieved = szpitalManager.getOneGabinet(idGabinetu);
+		assertEquals(GAB_NUMER_4, gabinetRetrieved.getNumer());
+		assertEquals(GAB_PIETRO_4, gabinetRetrieved.getPietro());
+		assertEquals(GAB_LEKARZ_4, gabinetRetrieved.getLekarz());
+		
+	}
 	
 }

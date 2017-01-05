@@ -12,7 +12,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
 	@NamedQuery(name = "Gabinet.getOneGabinet", query = "Select g from Gabinet g where g.id = :id"),
 	@NamedQuery(name = "Gabinet.getAllGabinety", query = "Select g from Gabinet g"),
-	@NamedQuery(name = "Gabinet.getLekarzGabinet", query = "Select g from Gabinet g where g.lekarz = :lekarz")
+	@NamedQuery(name = "Gabinet.lekarzGabinet", query = "Select g from Gabinet g where g.lekarz = :lekarz")
 })
 public class Gabinet {
 

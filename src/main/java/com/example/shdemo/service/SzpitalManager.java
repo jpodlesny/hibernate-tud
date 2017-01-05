@@ -21,5 +21,6 @@ public interface SzpitalManager{
 	void editGabinet(Gabinet gabinet1, Gabinet gabinet2);
 	Gabinet getOneGabinet(long id);
 	List<Gabinet> getAllGabinety();
+	List<Gabinet> lekarzGabinet(String lekarz);
 	
 }

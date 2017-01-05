@@ -108,7 +108,11 @@ public class SzpitalManagerHibernateImpl implements SzpitalManager {
 		return sessionFactory.getCurrentSession().getNamedQuery("Gabinet.getAllGabinety").list();
 	}
 	
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Gabinet> lekarzGabinet(String lekarz) {
+		return sessionFactory.getCurrentSession().getNamedQuery("Gabinet.lekarzGabinet").setString("lekarz", lekarz).list();
+	}
 	
 	
 	
