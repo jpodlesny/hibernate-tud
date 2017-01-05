@@ -60,8 +60,6 @@ public class BadanieManagerTest {
 		
 	}
 	
-
-	
 	@Test
 	public void deleteBadanie() {
 
@@ -83,5 +81,31 @@ public class BadanieManagerTest {
 		assertEquals(BAD_KOSZT_2, badanieRetrieved.getKoszt());
 
 	}
+	
+	@Test
+	public void editBadanie() {
+
+		Badanie badanie1 = new Badanie(BAD_NAZWA_1,BAD_OPIS_1,BAD_KOSZT_1);
+		Badanie badanie2 = new Badanie(BAD_NAZWA_2,BAD_OPIS_2,BAD_KOSZT_2);
+		Badanie badanie3 = new Badanie(BAD_NAZWA_3,BAD_OPIS_3,BAD_KOSZT_3);
+		
+		szpitalManager.addBadanie(badanie1);
+		szpitalManager.addBadanie(badanie2);
+		
+		List<Badanie> badania = szpitalManager.getAllBadania();
+		long idBadania;
+		idBadania = badania.get(1).getId();
+		
+		szpitalManager.editBadanie(badanie2, badanie3);
+		Badanie badanieRetrieved = szpitalManager.getOneBadanie(idBadania);
+		assertEquals(BAD_NAZWA_3, badanieRetrieved.getNazwa());
+		assertEquals(BAD_OPIS_3, badanieRetrieved.getOpis());
+		assertEquals(BAD_KOSZT_3, badanieRetrieved.getKoszt());
+
+	}
+	
+	
+	
+	
 	
 }

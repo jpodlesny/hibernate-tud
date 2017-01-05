@@ -34,13 +34,22 @@ public class SzpitalManagerHibernateImpl implements SzpitalManager {
 		
 	}
 	
-
-	
 	@Override
 	public void deleteBadanie(Badanie badanie) {
 		badanie = (Badanie) sessionFactory.getCurrentSession().get(Badanie.class,badanie.getId());		
 		sessionFactory.getCurrentSession().delete(badanie);
 	}
+	
+	@Override
+	public void editBadanie(Badanie badanie1, Badanie badanie2) {
+		badanie1.setNazwa(badanie2.getNazwa());
+		badanie1.setOpis(badanie2.getOpis());
+		badanie1.setKoszt(badanie2.getKoszt());
+		badanie1.setGabinety(badanie2.getGabinety());
+		sessionFactory.getCurrentSession().update(badanie1);	
+	}
+	
+	
 	
 	
 	@SuppressWarnings("unchecked")
