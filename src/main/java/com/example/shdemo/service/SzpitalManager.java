@@ -16,9 +16,11 @@ public interface SzpitalManager{
 	List<Gabinet> getAllGabinetyFromBadanie(Badanie badanie);
 
 	
+	
 	void addGabinet(Gabinet gabinet);
 	void deleteGabinet(Gabinet gabinet);
 	void editGabinet(Gabinet gabinet1, Gabinet gabinet2);
+	
 	Gabinet getOneGabinet(long id);
 	List<Gabinet> getAllGabinety();
 	List<Gabinet> lekarzGabinet(String lekarz);

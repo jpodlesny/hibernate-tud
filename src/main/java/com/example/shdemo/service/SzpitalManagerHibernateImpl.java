@@ -93,7 +93,7 @@ public class SzpitalManagerHibernateImpl implements SzpitalManager {
 		gabinet1.setNumer(gabinet2.getNumer());
 		gabinet1.setPietro(gabinet2.getPietro());
 		gabinet1.setLekarz(gabinet2.getLekarz());
-		sessionFactory.getCurrentSession().update(gabinet2);
+		sessionFactory.getCurrentSession().update(gabinet1);
 		
 	}
 	
